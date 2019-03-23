@@ -1,14 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AdventureEngine;
 using Adventure.AdventureEngine;
+using NUnit.Framework;
 
-namespace AdventureTests
+namespace Tests
 {
-    [TestClass]
-    public class UnitTest1
+    public class TokenTests
     {
-        [TestMethod]
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
         public void GetRedSpoon()
         {
             Tokenize token = new Tokenize();
@@ -18,7 +20,7 @@ namespace AdventureTests
             Assert.AreEqual("GET", result.Verb);
         }
 
-        [TestMethod]
+        [Test]
         public void Look()
         {
             Tokenize token = new Tokenize();
@@ -28,7 +30,7 @@ namespace AdventureTests
             Assert.AreEqual("LOOK", result.Verb);
         }
 
-        [TestMethod]
+        [Test]
         public void LookAtRedSpoon()
         {
             Tokenize token = new Tokenize();
@@ -39,7 +41,6 @@ namespace AdventureTests
 
             Assert.AreEqual(3, result.Words.Count);
         }
-
 
     }
 }

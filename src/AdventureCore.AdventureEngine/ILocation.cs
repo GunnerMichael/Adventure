@@ -1,4 +1,4 @@
-﻿namespace AdventureEngine
+﻿namespace AdventureCore.AdventureEngine
 {
     public interface ILocation
     {
