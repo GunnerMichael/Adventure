@@ -7,9 +7,16 @@ namespace MyTestAdventure
 {
     public class MyLocationDisplay : ILocationDisplay
     {
-        public void ShowLocation(ILocation location)
+        public void ShowLocation(ILocation location, bool showAlternative)
         {
-            Console.WriteLine(location.LocationDescription);
+            if (showAlternative)
+            {
+                Console.WriteLine(location.AltDescription);
+            }
+            else
+            {
+                Console.WriteLine(location.LocationDescription);
+            }
         }
     }
 }

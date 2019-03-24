@@ -16,6 +16,7 @@ namespace AdventureCore.AdventureEngine
         private ILocationFactory _locationFactory;
         private ILocationDisplay _locationDisplay;
         private readonly IUserInput _userInput;
+        private ILocationCommandHistory _commandHistory;
   
         private ICommandParser _parser;
 
@@ -23,12 +24,14 @@ namespace AdventureCore.AdventureEngine
             ILocationFactory locationFactory,
             ILocationDisplay locationDisplay,
             IUserInput userInput,
-            ICommandParser parser)
+            ICommandParser parser,
+            ILocationCommandHistory commandHistory)
         {
             _locationFactory = locationFactory;
             _locationDisplay = locationDisplay;
             this._userInput = userInput;
             this._parser = parser;
+            this._commandHistory = commandHistory;
         }
 
 
@@ -55,19 +58,33 @@ namespace AdventureCore.AdventureEngine
 
             SetLocation(_locationFactory.GetStart());
 
-            do
-            {
-                _locationDisplay.ShowLocation(Current);
-
-               string command = _userInput.GetUserInput();
-
-              
+            _parser.UserActionCompleted += Parser_UserActionCompleted;
 
 
+            _locationDisplay.ShowLocation(Current, showAlternative: false);
 
+            string command = _userInput.GetUserInput();
 
-            } while (_gameState != -1);
+            _parser.ParseCommand(command, currentLocation);
+
         }
+
+        private void Parser_UserActionCompleted(object sender, GameEvent e)
+        {
+            if (e.Message == "LOOK")
+            {
+                _locationDisplay.ShowLocation(Current, showAlternative: false);
+            }
+            else if (e.Message == "ALTLOOK")
+            {
+                _locationDisplay.ShowLocation(Current, showAlternative: true);
+            }
+
+            string command = _userInput.GetUserInput();
+
+            _parser.ParseCommand(command, currentLocation);
+        }
+
 
         protected virtual void SetLocation(ILocation location)
         {

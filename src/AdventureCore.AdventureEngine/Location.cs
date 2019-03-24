@@ -8,23 +8,18 @@ namespace AdventureEngine
 {
     public class Location : ILocation
     {
-        public Location(string description)
+        public Location(string description, string altDescription)
         {
             this.locationDescription = description;
+            this.altDescription = altDescription;
         }
 
         private string locationDescription;
-        public string LocationDescription
-        {
-            get
-            {
-                return this.locationDescription;
-            }
-        }
+        private string altDescription;
 
-        public virtual void Look()
-        {
 
-        }
+        public string AltDescription { get => altDescription; set => altDescription = value; }
+        public string LocationDescription { get => locationDescription; set => locationDescription = value; }
+
     }
 }
