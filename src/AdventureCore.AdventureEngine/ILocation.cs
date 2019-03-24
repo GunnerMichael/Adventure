@@ -4,6 +4,8 @@
     {
         string LocationDescription { get; }
 
-        void Look();
+        string AltDescription { get; }
+
+
     }
 }

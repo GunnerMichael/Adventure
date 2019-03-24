@@ -4,8 +4,8 @@ using System.Text;
 
 namespace AdventureCore.AdventureEngine
 {
-    public interface ILocationDisplay
+    public class GameEvent
     {
-        void ShowLocation(ILocation location, bool showAlternative);
+        public string Message { get; set; }
     }
 }

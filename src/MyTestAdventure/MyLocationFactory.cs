@@ -11,7 +11,7 @@ namespace MyTestAdventure
         private List<ILocation> locations = new List<ILocation>();
         public IEnumerable<ILocation> GetLocations()
         {
-            locations.Add(new Location("You are in a dark room"));
+            locations.Add(new Location("You are in a dark room", "It's still dark"));
             return locations; 
         }
 
