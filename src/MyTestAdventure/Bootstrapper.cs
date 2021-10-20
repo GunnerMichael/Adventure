@@ -23,8 +23,7 @@ namespace MyTestAdventure
             MyGame game = serviceProvider.GetService(typeof(MyGame)) as MyGame;
 
             game.Start();
-            
-
+        
         }
     }
 }
